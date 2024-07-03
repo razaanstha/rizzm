@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rizzm - Effortless and Fully Customizable Web Animations</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body style="--rizzm-stagger: 120;">
+  <div id="root">
+    <header class="bg-blue-600 text-white py-16">
+      <div class="container mx-auto text-center flex items-center flex-col justify-center min-h-[20rem] ">
+        <h1 class="text-5xl font-bold mb-4">Rizz<span class="js-rizzm [--rizzm-keyframe:zoomIn] [--rizzm-delay:200]">m
+            </spab>
+        </h1>
+        <p class="text-xl max-w-[50rem] text-balance mx-auto mb-8 js-rizzm">Effortless and CSS level customizable
+          animations. Initialize Rizzm with `.js-rizzm` and control all the animations using CSS variables `--rizzm-*`.
+        </p>
+        <a href="#install"
+          class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-blue-100 transition-colors js-rizzm">
+          Get Started
+        </a>
+      </div>
+    </header>
+
+    <main class="container px-5 mx-auto py-16 xl:max-w-[75rem]">
+      <section class="mb-16">
+        <h2 class="text-3xl font-bold mb-8 text-center js-rizzm"
+          style="--rizzm-keyframe: slideInleft; --rizzm-duration: 300;">Features</h2>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8" style=" --rizzm-stagger: 200;">
+          <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md js-rizzm"
+            style="--rizzm-keyframe: flipInY; --rizzm-duration: 350; ">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-blue-500 mb-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            <h3 class="text-xl font-semibold mb-2">Easy to Use</h3>
+            <p class="text-gray-600 text-center">Simple setup with minimal configuration required</p>
+          </div>
+          <div
+            class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md js-rizzm [--rizzm-keyframe:fadeInDown] md:[--rizzm-keyframe:flipInX]"
+            style="--rizzm-duration: 400;">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-blue-500 mb-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+            </svg>
+            <h3 class="text-xl font-semibold mb-2">Lightweight</h3>
+            <p class="text-gray-600 text-center">Small footprint for optimal performance</p>
+          </div>
+          <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md js-rizzm"
+            style="--rizzm-keyframe: zoomIn; --rizzm-duration: 450;">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-blue-500 mb-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+            <h3 class="text-xl font-semibold mb-2">Customizable</h3>
+            <p class="text-gray-600 text-center">Tailor animations to fit your project's needs</p>
+          </div>
+          <!-- Tailwind Compatible box -->
+          <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md js-rizzm"
+            style="--rizzm-keyframe: flipInX; --rizzm-duration: 500;">
+            <svg viewbox="0 0 51 30" width="51" height="30" class="w-12 h-12 text-blue-500 mb-4">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M25.517 0C18.712 0 14.46 3.382 12.758 10.146c2.552-3.382 5.529-4.65 8.931-3.805 1.941.482 3.329 1.882 4.864 3.432 2.502 2.524 5.398 5.445 11.722 5.445 6.804 0 11.057-3.382 12.758-10.145-2.551 3.382-5.528 4.65-8.93 3.804-1.942-.482-3.33-1.882-4.865-3.431C34.736 2.92 31.841 0 25.517 0zM12.758 15.218C5.954 15.218 1.701 18.6 0 25.364c2.552-3.382 5.529-4.65 8.93-3.805 1.942.482 3.33 1.882 4.865 3.432 2.502 2.524 5.397 5.445 11.722 5.445 6.804 0 11.057-3.381 12.758-10.145-2.552 3.382-5.529 4.65-8.931 3.805-1.941-.483-3.329-1.883-4.864-3.432-2.502-2.524-5.398-5.446-11.722-5.446z"
+                fill="#38bdf8"></path>
+            </svg>
+            <h3 class="text-xl font-semibold mb-2">Tailwind Compatible</h3>
+            <p class="text-gray-600 text-center">Fully compatible with Tailwind CSS or anyother CSS frameworks.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="install" class="mb-16 js-rizzm" style="--rizzm-keyframe: flipInY; --rizzm-duration: 800;">
+        <h2 class="text-3xl font-bold mb-8 text-center js-rizzm"
+          style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 500;">Installation</h2>
+        <div class="bg-white p-8 rounded-lg shadow-md js-rizzm"
+          style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 500;">
+          <h3 class="text-xl font-semibold mb-4">Install with npm:</h3>
+          <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>npm install rizzm</code></pre>
+          <h3 class="text-xl font-semibold mt-8 mb-4">Or include via CDN:</h3>
+          <pre
+            class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>&lt;script src="https://cdn.jsdelivr.net/npm/rizzm@latest/dist/rizzm.min.js"&gt;&lt;/script&gt;</code></pre>
+        </div>
+      </section>
+
+      <section class="mb-16 js-rizzm" style="--rizzm-keyframe: flipInX; --rizzm-duration: 1200;">
+        <h2 class="text-3xl font-bold mb-8 text-center">Usage Guide</h2>
+        <div class="bg-white p-8 rounded-lg shadow-md js-rizzm"
+          style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 800;">
+          <h3 class="text-xl font-semibold mb-4">1. Initialize Rizzm</h3>
+          <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>const rizzm = new Rizzm({
+selector: ".js-rizzm",
+options: {
+rootMargin: "50px",
+threshold: 0.24,
+stagger: 150
+}
+});</code></pre>
+          <h3 class="text-xl font-semibold mt-8 mb-4">2. Add CSS classes to your elements</h3>
+          <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>&lt;div class="js-rizzm" style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 800;"&gt;
+Your content here
+&lt;/div&gt;</code></pre>
+          <p class="mt-4 text-gray-600">
+            Customize animations using CSS variables: --rizzm-keyframe, --rizzm-duration, --rizzm-stagger, --rizzm-from,
+            --rizzm-to
+          </p>
+        </div>
+      </section>
+
+      <section class="js-rizzm" style="--rizzm-keyframe: zoomInRotate; --rizzm-duration: 600;">
+        <h2 class="text-3xl font-bold mb-8 text-center">Its now time for you to Rizz<span
+            class="text-[length:0.7em]">m</span> up your site.</h2>
+        <div class="text-center js-rizzm [--rizzm-keyframe:fadeIn]">
+          <a href="#install"
+            class="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition-colors">
+            Get Started
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z"
+                clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8">
+      <div class="container mx-auto text-center js-rizz-later [--rizzm-keyframe:flipInX] [--rizzm-duration:5000]">
+        <p>I WILL BE ANIMATED LATER</p>
+      </div>
+    </footer>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>

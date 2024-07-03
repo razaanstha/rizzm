@@ -1,0 +1,21 @@
+{
+  "name": "rizz-up",
+  "version": "1.0.0",
+  "type": "module",
+  "module": "./dist/RizzUp.js",
+  "main": "./dist/RizzUp.js",
+  "exports": {
+    ".": {
+      "import": "./dist/RizzUp.js"
+    }
+  },
+
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.3.1"
+  }
+}

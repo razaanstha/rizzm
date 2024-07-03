@@ -9,12 +9,11 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body style="--rizzm-stagger: 120;">
+<body style="--rizzm-stagger: 280;">
   <div id="root">
     <header class="bg-blue-600 text-white py-16">
-      <div class="container mx-auto text-center flex items-center flex-col justify-center min-h-[20rem] ">
-        <h1 class="text-5xl font-bold mb-4">Rizz<span class="js-rizzm [--rizzm-keyframe:zoomIn] [--rizzm-delay:200]">m
-            </spab>
+      <div class="container mx-auto text-center flex items-center flex-col justify-center min-h-[20rem] js-rizzm">
+        <h1 class="text-5xl font-bold mb-4">Rizz<span class="inline-flex js-rizzm [--rizzm-keyframe:bounceIn] [--rizzm-duration:400] [--rizzm-delay:500]">m</span>
         </h1>
         <p class="text-xl max-w-[50rem] text-balance mx-auto mb-8 js-rizzm">Effortless and CSS level customizable
           animations. Initialize Rizzm with `.js-rizzm` and control all the animations using CSS variables `--rizzm-*`.
@@ -32,7 +31,7 @@
           style="--rizzm-keyframe: slideInleft; --rizzm-duration: 300;">Features</h2>
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-8" style=" --rizzm-stagger: 200;">
           <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md js-rizzm"
-            style="--rizzm-keyframe: flipInY; --rizzm-duration: 350; ">
+            style="--rizzm-keyframe: flipFromTop; --rizzm-duration: 350; ">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-blue-500 mb-4" fill="none" viewBox="0 0 24 24"
               stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -41,7 +40,7 @@
             <p class="text-gray-600 text-center">Simple setup with minimal configuration required</p>
           </div>
           <div
-            class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md js-rizzm [--rizzm-keyframe:fadeInDown] md:[--rizzm-keyframe:flipInX]"
+            class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md js-rizzm [--rizzm-keyframe:fadeInDown] md:[--rizzm-keyframe:flipFromRight]"
             style="--rizzm-duration: 400;">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-blue-500 mb-4" fill="none" viewBox="0 0 24 24"
               stroke="currentColor">
@@ -52,7 +51,7 @@
             <p class="text-gray-600 text-center">Small footprint for optimal performance</p>
           </div>
           <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md js-rizzm"
-            style="--rizzm-keyframe: zoomIn; --rizzm-duration: 450;">
+            style="--rizzm-keyframe: slideFromTop; --rizzm-duration: 450;">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-blue-500 mb-4" fill="none" viewBox="0 0 24 24"
               stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

@@ -9,11 +9,11 @@ class Rizzm {
    * Creates an instance of Rizzm.
    * @param {Object} config - Configuration options.
    * @param {string|string[]} [config.selector=".js-rizzm"] - The CSS selector(s) for the elements to be animated.
-   * @param {Object} [config.options={}] - Configuration options for IntersectionObserver.
+   * @param {Object} [config.options={}] - Default configuration options for IntersectionObserver.
    * @param {Element} [config.options.root=null] - The element that is used as the viewport for checking visibility.
-   * @param {string} [config.options.rootMargin="0px"] - Margin around the root.
-   * @param {number} [config.options.threshold=0.24] - A threshold of intersection ratio.
-   * @param {number} [config.options.stagger=200] - Delay between the animations of each element.
+   * @param {string} [config.options.rootMargin="0px"] - Default margin around the root.
+   * @param {number} [config.options.threshold=0.5] - Default threshold of intersection ratio.
+   * @param {number} [config.options.stagger=200] - Default delay between the animations of each element.
    * @param {Object} [config.customKeyframes={}] - Custom keyframe animations.
    * @param {boolean} [config.paused=false] - Whether to initialize the observer immediately.
    */
@@ -30,8 +30,7 @@ class Rizzm {
     } = config;
 
     this.selectors = Array.isArray(selector) ? selector : [selector];
-    this.options = {
-      root: null,
+    this.defaultOptions = {
       rootMargin: "0px",
       threshold: 0.5,
       stagger: 200,
@@ -46,6 +45,12 @@ class Rizzm {
 
     this.animatedElements = new Set(); // Track animated elements
 
+    // Initialize IntersectionObserver
+    this.observer = new IntersectionObserver(
+      this.animateElements.bind(this),
+      this.defaultOptions
+    );
+
     // Initialize Rizzm if not paused
     if (!paused) {
       this.initialize();
@@ -56,10 +61,6 @@ class Rizzm {
    * Initializes the observer and elements.
    */
   initialize() {
-    this.observer = new IntersectionObserver(
-      this.animateElements.bind(this),
-      this.options
-    );
     this.updateElements();
   }
 
@@ -69,6 +70,7 @@ class Rizzm {
    */
   checkBrowserSupportAndSkipIfNotSupported() {
     if (
+      typeof window === "undefined" ||
       !("IntersectionObserver" in window) ||
       !("animate" in Element.prototype)
     ) {
@@ -94,18 +96,16 @@ class Rizzm {
   /**
    * Animates elements when they intersect with the viewport.
    * @param {IntersectionObserverEntry[]} entries - The intersection observer entries.
-   * @param {IntersectionObserver} observer - The intersection observer.
    */
-  animateElements(entries, observer) {
+  animateElements(entries) {
     entries.forEach((entry, index) => {
       if (entry.isIntersecting) {
         const element = entry.target;
-
         if (
           this.shouldPreventAnimation(element) ||
           this.animatedElements.has(element)
         ) {
-          observer.unobserve(element);
+          this.observer.unobserve(element);
           return;
         }
 
@@ -118,39 +118,44 @@ class Rizzm {
           "--rizzm-keyframe",
           "fadeInUp"
         );
-        const customFrom = this.parseJSON(
-          this.getCSSVariable(element, "--rizzm-from", null)
+        const customKeyframes = this.parseJSON(
+          this.getCSSVariable(element, "--rizzm-keyframes", null)
         );
-        const customTo = this.parseJSON(
-          this.getCSSVariable(element, "--rizzm-to", null)
+        const keyframes = this.getAnimationKeyframes(keyframe, customKeyframes);
+        const stagger = parseInt(
+          this.getCSSVariable(
+            element,
+            "--rizzm-stagger",
+            this.defaultOptions.stagger
+          ),
+          10
         );
-        const { from, to } = this.getAnimationKeyframes(
-          keyframe,
-          customFrom,
-          customTo
+        const easing = this.getCSSVariable(
+          element,
+          "--rizzm-easing",
+          "ease-in-out"
         );
-        const delay =
-          parseInt(
-            this.getCSSVariable(
-              element,
-              "--rizzm-stagger",
-              this.options.stagger
-            ),
-            10
-          ) * index;
+        const fill = this.getCSSVariable(element, "--rizzm-fill", "forwards");
+        const delay = parseInt(
+          this.getCSSVariable(
+            element,
+            "--rizzm-delay",
+            (stagger * index).toString()
+          ),
+          10
+        );
 
-        element.animate([from, to], {
+        element.animate(keyframes, {
           duration: duration,
-          easing: "ease-out",
-          fill: "forwards",
+          easing: easing,
+          fill: fill,
           delay: delay,
         }).onfinish = () => {
-          element.style.opacity = "";
-          element.style.transform = "";
-          this.animatedElements.add(element); // Mark the element as animated
+          element.dataset.rizzmAnimated = true;
+          this.animatedElements.add(element);
         };
 
-        observer.unobserve(element);
+        this.observer.unobserve(element);
       }
     });
   }
@@ -168,7 +173,13 @@ class Rizzm {
       .getPropertyValue("--rizzm-keyframe")
       .trim();
 
-    return preventAnimations === "true" || keyframe === "none";
+    return (
+      preventAnimations === "true" ||
+      keyframe === "none" ||
+      keyframe === "false" ||
+      keyframe === undefined ||
+      keyframe === null
+    );
   }
 
   /**
@@ -188,16 +199,24 @@ class Rizzm {
   /**
    * Gets the animation keyframes for a given keyframe name, with optional custom overrides.
    * @param {string} keyframe - The keyframe name.
-   * @param {Object} [customFrom={}] - Custom "from" keyframe properties.
-   * @param {Object} [customTo={}] - Custom "to" keyframe properties.
-   * @returns {Object} - The from and to keyframe properties.
+   * @param {Object|Array} [customKeyframes={}] - Custom keyframe properties.
+   * @returns {Array|Object} - The keyframe properties.
    */
-  getAnimationKeyframes(keyframe, customFrom = {}, customTo = {}) {
+  getAnimationKeyframes(keyframe, customKeyframes = {}) {
     const keyframeAnimation =
       this.keyframeAnimations[keyframe] || this.keyframeAnimations.fadeInUp;
-    const from = { ...keyframeAnimation.from, ...customFrom };
-    const to = { ...keyframeAnimation.to, ...customTo };
-    return { from, to };
+
+    // If keyframeAnimation is an array or an object, merge it accordingly
+    let finalKeyframes;
+    if (Array.isArray(keyframeAnimation)) {
+      finalKeyframes = customKeyframes.length
+        ? customKeyframes
+        : keyframeAnimation;
+    } else {
+      finalKeyframes = { ...keyframeAnimation, ...customKeyframes };
+    }
+
+    return finalKeyframes;
   }
 
   /**
@@ -254,26 +273,19 @@ class Rizzm {
       return;
     }
 
-    const batchStyles = [];
     newElements.forEach((element) => {
       if (
         !this.shouldPreventAnimation(element) &&
         !this.animatedElements.has(element)
       ) {
-        batchStyles.push({ element, opacity: "0", transform: "none" });
+        // Set initial styles for the element
+        element.style.opacity = "0";
+        element.style.transform = "none";
         this.observer.observe(element);
       } else {
-        element.style.opacity = "1";
-        element.style.transform = "none";
+        element.style.opacity = false;
+        element.style.transform = false;
       }
-    });
-
-    // Apply batched styles to prevent layout thrashing
-    requestAnimationFrame(() => {
-      batchStyles.forEach(({ element, opacity, transform }) => {
-        element.style.opacity = opacity;
-        element.style.transform = transform;
-      });
     });
   }
 }

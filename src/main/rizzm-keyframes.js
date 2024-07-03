@@ -1,155 +1,165 @@
 const RizzmKeyframes = {
-  fadeIn: {
-    from: { opacity: "var(--fadeIn-start-opacity, 0)" },
-    to: { opacity: "var(--fadeIn-end-opacity, 1)" },
-  },
-  fadeInUp: {
-    from: {
-      opacity: "var(--fadeInUp-start-opacity, 0)",
-      transform: "translateY(var(--fadeInUp-start-translateY, 20px))",
+  fadeIn: [
+    { opacity: "var(--rizm-fadein-start-opacity, 0)" },
+    { opacity: "var(--rizm-fadein-end-opacity, 1)" },
+  ],
+  fadeInUp: [
+    {
+      opacity: "var(--rizm-fadeinup-start-opacity, 0)",
+      transform: "translateY(var(--rizm-fadeinup-start-translatey, 20px))",
     },
-    to: {
-      opacity: "var(--fadeInUp-end-opacity, 1)",
-      transform: "translateY(var(--fadeInUp-end-translateY, 0))",
+    {
+      opacity: "var(--rizm-fadeinup-end-opacity, 1)",
+      transform: "translateY(var(--rizm-fadeinup-end-translatey, 0))",
     },
-  },
-  fadeInDown: {
-    from: {
-      opacity: "var(--fadeInDown-start-opacity, 0)",
-      transform: "translateY(var(--fadeInDown-start-translateY, -20px))",
+  ],
+  fadeInDown: [
+    {
+      opacity: "var(--rizm-fadeindown-start-opacity, 0)",
+      transform: "translateY(var(--rizm-fadeindown-start-translatey, -20px))",
     },
-    to: {
-      opacity: "var(--fadeInDown-end-opacity, 1)",
-      transform: "translateY(var(--fadeInDown-end-translateY, 0))",
+    {
+      opacity: "var(--rizm-fadeindown-end-opacity, 1)",
+      transform: "translateY(var(--rizm-fadeindown-end-translatey, 0))",
     },
-  },
-  fadeInLeft: {
-    from: {
-      opacity: "var(--fadeInLeft-start-opacity, 0)",
-      transform: "translateX(var(--fadeInLeft-start-translateX, -20px))",
+  ],
+  fadeInLeft: [
+    {
+      opacity: "var(--rizm-fadeinleft-start-opacity, 0)",
+      transform: "translateX(var(--rizm-fadeinleft-start-translatex, -20px))",
     },
-    to: {
-      opacity: "var(--fadeInLeft-end-opacity, 1)",
-      transform: "translateX(var(--fadeInLeft-end-translateX, 0))",
+    {
+      opacity: "var(--rizm-fadeinleft-end-opacity, 1)",
+      transform: "translateX(var(--rizm-fadeinleft-end-translatex, 0))",
     },
-  },
-  fadeInRight: {
-    from: {
-      opacity: "var(--fadeInRight-start-opacity, 0)",
-      transform: "translateX(var(--fadeInRight-start-translateX, 20px))",
+  ],
+  fadeInRight: [
+    {
+      opacity: "var(--rizm-fadeinright-start-opacity, 0)",
+      transform: "translateX(var(--rizm-fadeinright-start-translatex, 20px))",
     },
-    to: {
-      opacity: "var(--fadeInRight-end-opacity, 1)",
-      transform: "translateX(var(--fadeInRight-end-translateX, 0))",
+    {
+      opacity: "var(--rizm-fadeinright-end-opacity, 1)",
+      transform: "translateX(var(--rizm-fadeinright-end-translatex, 0))",
     },
-  },
-  zoomIn: {
-    from: {
-      opacity: "var(--zoomIn-start-opacity, 0)",
-      transform: "scale(var(--zoomIn-start-scale, 0.95))",
+  ],
+  zoomIn: [
+    {
+      opacity: "var(--rizm-zoomin-start-opacity, 0)",
+      transform: "scale(var(--rizm-zoomin-start-scale, 0.95))",
     },
-    to: {
-      opacity: "var(--zoomIn-end-opacity, 1)",
-      transform: "scale(var(--zoomIn-end-scale, 1))",
+    {
+      opacity: "var(--rizm-zoomin-end-opacity, 1)",
+      transform: "scale(var(--rizm-zoomin-end-scale, 1))",
     },
-  },
-  zoomInRotate: {
-    from: {
-      opacity: "var(--zoomInRotate-start-opacity, 0)",
+  ],
+  zoomInRotate: [
+    {
+      opacity: "var(--rizm-zoominrotate-start-opacity, 0)",
       transform:
-        "scale(var(--zoomInRotate-start-scale, 0.95)) rotate(var(--zoomInRotate-start-rotate, -5deg))",
+        "scale(var(--rizm-zoominrotate-start-scale, 0.95)) rotate(var(--rizm-zoominrotate-start-rotate, -5deg))",
     },
-    to: {
-      opacity: "var(--zoomInRotate-end-opacity, 1)",
+    {
+      opacity: "var(--rizm-zoominrotate-end-opacity, 1)",
       transform:
-        "scale(var(--zoomInRotate-end-scale, 1)) rotate(var(--zoomInRotate-end-rotate, 0))",
+        "scale(var(--rizm-zoominrotate-end-scale, 1)) rotate(var(--rizm-zoominrotate-end-rotate, 0))",
     },
-  },
-  slideInUp: {
-    from: {
-      transform: "translateY(var(--slideInUp-start-translateY, 100%))",
-    },
-    to: {
-      transform: "translateY(var(--slideInUp-end-translateY, 0))",
-    },
-  },
-  slideInDown: {
-    from: {
-      transform: "translateY(var(--slideInDown-start-translateY, -100%))",
-    },
-    to: {
-      transform: "translateY(var(--slideInDown-end-translateY, 0))",
-    },
-  },
-  slideInLeft: {
-    from: {
-      transform: "translateX(var(--slideInLeft-start-translateX, -100%))",
-    },
-    to: {
-      transform: "translateX(var(--slideInLeft-end-translateX, 0))",
-    },
-  },
-  slideInRight: {
-    from: {
-      transform: "translateX(var(--slideInRight-start-translateX, 100%))",
-    },
-    to: {
-      transform: "translateX(var(--slideInRight-end-translateX, 0))",
-    },
-  },
-  flipInX: {
-    from: {
+  ],
+  slideFromLeft: [
+    { transform: "translate3d(-100%, 0, 0)" },
+    { transform: "translate3d(0, 0, 0)" },
+  ],
+  slideFromRight: [
+    { transform: "translate3d(100%, 0, 0)" },
+    { transform: "translate3d(0, 0, 0)" },
+  ],
+  slideFromTop: [
+    { transform: "translate3d(0, -100%, 0)" },
+    { transform: "translate3d(0, 0, 0)" },
+  ],
+  slideFromBottom: [
+    { transform: "translate3d(0, 100%, 0)" },
+    { transform: "translate3d(0, 0, 0)" },
+  ],
+  flipFromLeft: [
+    {
       transform:
-        "perspective(var(--flipInX-perspective, 400px)) rotate3d(1, 0, 0, var(--flipInX-start-rotate, 90deg))",
-      opacity: "var(--flipInX-start-opacity, 0)",
+        "perspective(var(--rizm-flipfromleft-perspective, 40em)) rotateY(var(--rizm-flipfromleft-start-rotate, -90deg))",
+      opacity: "var(--rizm-flipfromleft-start-opacity, 0)",
     },
-    to: {
+    {
       transform:
-        "perspective(var(--flipInX-perspective, 400px)) rotate3d(1, 0, 0, var(--flipInX-end-rotate, 0deg))",
-      opacity: "var(--flipInX-end-opacity, 1)",
+        "perspective(var(--rizm-flipfromleft-perspective, 40em)) rotateY(var(--rizm-flipfromleft-end-rotate, 0deg))",
+      opacity: "var(--rizm-flipfromleft-end-opacity, 1)",
     },
-  },
-  flipInY: {
-    from: {
+  ],
+  flipFromRight: [
+    {
       transform:
-        "perspective(var(--flipInY-perspective, 400px)) rotate3d(0, 1, 0, var(--flipInY-start-rotate, 90deg))",
-      opacity: "var(--flipInY-start-opacity, 0)",
+        "perspective(var(--rizm-flipfromright-perspective, 40em)) rotateY(var(--rizm-flipfromright-start-rotate, 90deg))",
+      opacity: "var(--rizm-flipfromright-start-opacity, 0)",
     },
-    to: {
+    {
       transform:
-        "perspective(var(--flipInY-perspective, 400px)) rotate3d(0, 1, 0, var(--flipInY-end-rotate, 0deg))",
-      opacity: "var(--flipInY-end-opacity, 1)",
+        "perspective(var(--rizm-flipfromright-perspective, 40em)) rotateY(var(--rizm-flipfromright-end-rotate, 0deg))",
+      opacity: "var(--rizm-flipfromright-end-opacity, 1)",
     },
-  },
-  bounceIn: {
-    "0%": {
-      opacity: "var(--bounceIn-0-opacity, 0)",
-      transform: "scale(var(--bounceIn-0-scale, 0.3))",
+  ],
+  flipFromTop: [
+    {
+      transform:
+        "perspective(var(--rizm-flipfromtop-perspective, 40em)) rotateX(var(--rizm-flipfromtop-start-rotate, 90deg))",
+      opacity: "var(--rizm-flipfromtop-start-opacity, 0)",
     },
-    "50%": {
-      opacity: "var(--bounceIn-50-opacity, 1)",
-      transform: "scale(var(--bounceIn-50-scale, 1.05))",
+    {
+      transform:
+        "perspective(var(--rizm-flipfromtop-perspective, 40em)) rotateX(var(--rizm-flipfromtop-end-rotate, 0deg))",
+      opacity: "var(--rizm-flipfromtop-end-opacity, 1)",
     },
-    "70%": {
-      transform: "scale(var(--bounceIn-70-scale, 0.9))",
+  ],
+  flipFromBottom: [
+    {
+      transform:
+        "perspective(var(--rizm-flipfrombottom-perspective, 40em)) rotateX(var(--rizm-flipfrombottom-start-rotate, -90deg))",
+      opacity: "var(--rizm-flipfrombottom-start-opacity, 0)",
     },
-    "100%": {
-      opacity: "var(--bounceIn-100-opacity, 1)",
-      transform: "scale(var(--bounceIn-100-scale, 1))",
+    {
+      transform:
+        "perspective(var(--rizm-flipfrombottom-perspective, 40em)) rotateX(var(--rizm-flipfrombottom-end-rotate, 0deg))",
+      opacity: "var(--rizm-flipfrombottom-end-opacity, 1)",
     },
-  },
-  rotateIn: {
-    from: {
-      transformOrigin: "var(--rotateIn-transformOrigin, center)",
-      transform: "rotate3d(0, 0, 1, var(--rotateIn-start-rotate, -200deg))",
-      opacity: "var(--rotateIn-start-opacity, 0)",
+  ],
+  bounceIn: [
+    { transform: "scale(var(--rizm-bouncein-start-scale, 0.3))", opacity: "0" },
+    {
+      transform: "scale(var(--rizm-bouncein-end-scale, 1.1))",
+      opacity: "1",
+      offset: 0.5,
     },
-    to: {
-      transformOrigin: "var(--rotateIn-transformOrigin, center)",
-      transform: "rotate3d(0, 0, 1, var(--rotateIn-end-rotate, 0deg))",
-      opacity: "var(--rotateIn-end-opacity, 1)",
+    {
+      transform: "scale(var(--rizm-bouncein-overshoot-scale, 0.9))",
+      opacity: "1",
+      offset: 0.7,
     },
-  },
+    {
+      transform: "scale(var(--rizm-bouncein-end-scale, 1))",
+      opacity: "1",
+      offset: 1,
+    },
+  ],
+  rotateIn: [
+    {
+      transformOrigin: "var(--rizm-rotatein-transformorigin, center)",
+      transform:
+        "rotate3d(0, 0, 1, var(--rizm-rotatein-start-rotate, -200deg))",
+      opacity: "var(--rizm-rotatein-start-opacity, 0)",
+    },
+    {
+      transformOrigin: "var(--rizm-rotatein-transformorigin, center)",
+      transform: "rotate3d(0, 0, 1, var(--rizm-rotatein-end-rotate, 0deg))",
+      opacity: "var(--rizm-rotatein-end-opacity, 1)",
+    },
+  ],
 };
 
 export default RizzmKeyframes;

@@ -1,19 +1,24 @@
 {
-  "name": "rizz-up",
+  "name": "rizzm",
   "version": "1.0.0",
   "type": "module",
-  "module": "./dist/RizzUp.js",
-  "main": "./dist/RizzUp.js",
-  "keywords": ["Animate on scroll", "WAAPI", "Animation"],
+  "module": "./dist/Rizzm.js",
+  "main": "./dist/Rizzm.js",
+  "description": "A library to animate elements on scroll using WAAPI and Intersection Observer API.",
+  "keywords": ["Animate on scroll", "WAAPI", "Animation", "scroll", "web animation", "javascript", "library"],
   "author": "Rajan Shrestha",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/razaanstha/rizzm"
   },
+  "bugs": {
+    "url": "https://github.com/razaanstha/rizzm/issues"
+  },
+  "homepage": "https://github.com/razaanstha/rizzm#readme",
   "exports": {
     ".": {
-      "import": "./dist/RizzUp.js"
+      "import": "./dist/Rizzm.js"
     }
   },
   "scripts": {
@@ -21,7 +26,6 @@
     "build": "vite build",
     "preview": "vite preview"
   },
-  
   "devDependencies": {
     "vite": "^5.3.1"
   }

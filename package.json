@@ -1,9 +1,9 @@
 {
   "name": "rizzm",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
-  "module": "./dist/Rizzm.js",
-  "main": "./dist/Rizzm.js",
+  "module": "./src/main/Rizzm.js",
+  "main": "./src/main/Rizzm.js",
   "description": "A library to animate elements on scroll using WAAPI and Intersection Observer API.",
   "keywords": ["Animate on scroll", "WAAPI", "Animation", "scroll", "web animation", "javascript", "library"],
   "author": "Rajan Shrestha",
@@ -18,7 +18,7 @@
   "homepage": "https://github.com/razaanstha/rizzm#readme",
   "exports": {
     ".": {
-      "import": "./dist/Rizzm.js"
+      "import": "./src/main/Rizzm.js"
     }
   },
   "scripts": {

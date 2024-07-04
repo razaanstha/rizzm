@@ -12,7 +12,7 @@ class Rizzm {
    * @param {Object} [config.options={}] - Default configuration options for IntersectionObserver.
    * @param {Element} [config.options.root=null] - The element that is used as the viewport for checking visibility.
    * @param {string} [config.options.rootMargin="0px"] - Default margin around the root.
-   * @param {number} [config.options.threshold=0.5] - Default threshold of intersection ratio.
+   * @param {number} [config.options.threshold=0.2] - Default threshold of intersection ratio.
    * @param {number} [config.options.stagger=200] - Default delay between the animations of each element.
    * @param {Object} [config.customKeyframes={}] - Custom keyframe animations.
    * @param {boolean} [config.paused=false] - Whether to initialize the observer immediately.
@@ -32,7 +32,7 @@ class Rizzm {
     this.selectors = Array.isArray(selector) ? selector : [selector];
     this.defaultOptions = {
       rootMargin: "0px",
-      threshold: 0.5,
+      threshold: 0.2,
       stagger: 200,
       ...options,
     };
@@ -121,7 +121,15 @@ class Rizzm {
         const customKeyframes = this.parseJSON(
           this.getCSSVariable(element, "--rizzm-keyframes", null)
         );
-        const keyframes = this.getAnimationKeyframes(keyframe, customKeyframes);
+        let keyframes = {};
+        if (keyframe === "random") {
+          const keyframeNames = Object.keys(this.keyframeAnimations);
+          const randKeyframe =
+            keyframeNames[Math.floor(Math.random() * keyframeNames.length)];
+          keyframes = this.getAnimationKeyframes(randKeyframe, customKeyframes);
+        } else {
+          keyframes = this.getAnimationKeyframes(keyframe, customKeyframes);
+        }
         const stagger = parseInt(
           this.getCSSVariable(
             element,
@@ -133,7 +141,7 @@ class Rizzm {
         const easing = this.getCSSVariable(
           element,
           "--rizzm-easing",
-          "ease-in-out"
+          "cubic-bezier(0.25, 0.1, 0.25, 1)"
         );
         const fill = this.getCSSVariable(element, "--rizzm-fill", "forwards");
         const delay = parseInt(
@@ -144,12 +152,14 @@ class Rizzm {
           ),
           10
         );
+        const iteration = this.getCSSVariable(element, "--rizzm-iteration", 1);
 
         element.animate(keyframes, {
           duration: duration,
           easing: easing,
           fill: fill,
           delay: delay,
+          iterations: iteration,
         }).onfinish = () => {
           element.dataset.rizzmAnimated = true;
           this.animatedElements.add(element);
@@ -287,6 +297,7 @@ class Rizzm {
         element.style.transform = false;
       }
     });
+    document.body.classList.add("js-rizzm-initialized");
   }
 }
 

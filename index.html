@@ -51,7 +51,7 @@
             <p class="text-gray-600 text-center">Small footprint for optimal performance</p>
           </div>
           <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md js-rizzm"
-            style="--rizzm-keyframe: slideFromTop; --rizzm-duration: 450;">
+            style="--rizzm-keyframe: fadeInDown; --rizzm-duration: 400;">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-blue-500 mb-4" fill="none" viewBox="0 0 24 24"
               stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -62,19 +62,19 @@
           </div>
           <!-- Tailwind Compatible box -->
           <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md js-rizzm"
-            style="--rizzm-keyframe: flipInX; --rizzm-duration: 500;">
-            <svg viewbox="0 0 51 30" width="51" height="30" class="w-12 h-12 text-blue-500 mb-4">
+            style="--rizzm-keyframe: slideFromRight; --rizzm-duration: 500;">
+            <svg viewbox="0 0 51 30" width="51" height="30" class="w-12 h-12 mx-auto text-blue-500 mb-4">
               <path fill-rule="evenodd" clip-rule="evenodd"
                 d="M25.517 0C18.712 0 14.46 3.382 12.758 10.146c2.552-3.382 5.529-4.65 8.931-3.805 1.941.482 3.329 1.882 4.864 3.432 2.502 2.524 5.398 5.445 11.722 5.445 6.804 0 11.057-3.382 12.758-10.145-2.551 3.382-5.528 4.65-8.93 3.804-1.942-.482-3.33-1.882-4.865-3.431C34.736 2.92 31.841 0 25.517 0zM12.758 15.218C5.954 15.218 1.701 18.6 0 25.364c2.552-3.382 5.529-4.65 8.93-3.805 1.942.482 3.33 1.882 4.865 3.432 2.502 2.524 5.397 5.445 11.722 5.445 6.804 0 11.057-3.381 12.758-10.145-2.552 3.382-5.529 4.65-8.931 3.805-1.941-.483-3.329-1.883-4.864-3.432-2.502-2.524-5.398-5.446-11.722-5.446z"
                 fill="#38bdf8"></path>
             </svg>
-            <h3 class="text-xl font-semibold mb-2">Tailwind Compatible</h3>
+            <h3 class="text-xl font-semibold mb-2 text-center">Tailwind Compatible</h3>
             <p class="text-gray-600 text-center">Fully compatible with Tailwind CSS or anyother CSS frameworks.</p>
           </div>
         </div>
       </section>
 
-      <section id="install" class="mb-16 js-rizzm" style="--rizzm-keyframe: flipInY; --rizzm-duration: 800;">
+      <section id="install" class="mb-16 js-rizzm" style="--rizzm-keyframe: flipFromRight; --rizzm-duration: 800;">
         <h2 class="text-3xl font-bold mb-8 text-center js-rizzm"
           style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 500;">Installation</h2>
         <div class="bg-white p-8 rounded-lg shadow-md js-rizzm"
@@ -83,14 +83,15 @@
           <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>npm install rizzm</code></pre>
           <h3 class="text-xl font-semibold mt-8 mb-4">Or include via CDN:</h3>
           <pre
-            class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>&lt;script src="https://cdn.jsdelivr.net/npm/rizzm@latest/dist/rizzm.min.js"&gt;&lt;/script&gt;</code></pre>
+            class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto">
+            COMIN
+          </pre>
         </div>
       </section>
 
-      <section class="mb-16 js-rizzm" style="--rizzm-keyframe: flipInX; --rizzm-duration: 1200;">
+      <section class="mb-16 js-rizzm" style="--rizzm-keyframe: flipFromTop; --rizzm-duration: 600; --rizzm-root: '.koko';">
         <h2 class="text-3xl font-bold mb-8 text-center">Usage Guide</h2>
-        <div class="bg-white p-8 rounded-lg shadow-md js-rizzm"
-          style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 800;">
+        <div class="bg-white p-8 rounded-lg shadow-md js-rizzm" style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 800;">
           <h3 class="text-xl font-semibold mb-4">1. Initialize Rizzm</h3>
           <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>const rizzm = new Rizzm({
 selector: ".js-rizzm",

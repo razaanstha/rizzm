@@ -19,6 +19,7 @@ class Rizzm {
    */
   constructor(config = {}) {
     if (this.checkBrowserSupportAndSkipIfNotSupported()) {
+      document.body.classList.add("js-rizzm-init-failed");
       return;
     }
 
@@ -288,13 +289,7 @@ class Rizzm {
         !this.shouldPreventAnimation(element) &&
         !this.animatedElements.has(element)
       ) {
-        // Set initial styles for the element
-        element.style.opacity = "0";
-        element.style.transform = "none";
         this.observer.observe(element);
-      } else {
-        element.style.opacity = false;
-        element.style.transform = false;
       }
     });
     document.body.classList.add("js-rizzm-initialized");

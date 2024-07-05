@@ -7,13 +7,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rizzm - Effortless and Fully Customizable Web Animations</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @media not (prefers-reduced-motion: reduce) {
+      :root {
+        --rizzm-keyframe: bounceIn;
+        --rizzm-duration: 500;
+        --rizzm-stagger: 250;
+        --rizzm-element-initial-opacity: 0.0001; /* 0 has issues with performance metric on Lighthouse */
+      }
+
+      .js-rizzm-init-failed {
+        --rizzm-element-initial-opacity: 1;
+      }
+
+      .js-rizzm {
+        opacity: var(--rizzm-element-initial-opacity, 0);
+      }
+    }
+  </style>
 </head>
 
 <body style="--rizzm-stagger: 280;">
   <div id="root">
     <header class="bg-blue-600 text-white py-16">
       <div class="container mx-auto text-center flex items-center flex-col justify-center min-h-[20rem] js-rizzm">
-        <h1 class="text-5xl font-bold mb-4">Rizz<span class="inline-flex js-rizzm [--rizzm-keyframe:bounceIn] [--rizzm-duration:400] [--rizzm-delay:500]">m</span>
+        <h1 class="text-5xl font-bold mb-4">Rizz<span
+            class="inline-flex js-rizzm [--rizzm-keyframe:bounceIn] [--rizzm-duration:400] [--rizzm-delay:500]">m</span>
         </h1>
         <p class="text-xl max-w-[50rem] text-balance mx-auto mb-8 js-rizzm">Effortless and CSS level customizable
           animations. Initialize Rizzm with `.js-rizzm` and control all the animations using CSS variables `--rizzm-*`.
@@ -82,16 +101,17 @@
           <h3 class="text-xl font-semibold mb-4">Install with npm:</h3>
           <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>npm install rizzm</code></pre>
           <h3 class="text-xl font-semibold mt-8 mb-4">Or include via CDN:</h3>
-          <pre
-            class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto">
+          <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto">
             COMIN
           </pre>
         </div>
       </section>
 
-      <section class="mb-16 js-rizzm" style="--rizzm-keyframe: flipFromTop; --rizzm-duration: 600; --rizzm-root: '.koko';">
+      <section class="mb-16 js-rizzm"
+        style="--rizzm-keyframe: flipFromTop; --rizzm-duration: 600; --rizzm-root: '.koko';">
         <h2 class="text-3xl font-bold mb-8 text-center">Usage Guide</h2>
-        <div class="bg-white p-8 rounded-lg shadow-md js-rizzm" style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 800;">
+        <div class="bg-white p-8 rounded-lg shadow-md js-rizzm"
+          style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 800;">
           <h3 class="text-xl font-semibold mb-4">1. Initialize Rizzm</h3>
           <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>const rizzm = new Rizzm({
 selector: ".js-rizzm",

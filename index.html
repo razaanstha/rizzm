@@ -632,7 +632,10 @@ const rizzm = new Rizzm({
     </div>
   </footer>
 
-  <script type="module" src="./main.js"></script>
+  <script type="module">
+    import Rizzm from "https://cdn.jsdelivr.net/npm/rizzm@1.0.2/src/main/Rizzm.min.js";
+    const rizzler = new Rizzm();
+  </script>
 </body>
 
 </html>

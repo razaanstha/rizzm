@@ -8,12 +8,18 @@
   <title>Rizzm - Effortless and Fully Customizable Web Animations</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    /* Scroll margin for smooth scrolling */
+    [id]:target {
+      scroll-margin-top: 100px;
+    }
+
+    /* Fallback for when  */
     @media not (prefers-reduced-motion: reduce) {
       :root {
         --rizzm-keyframe: bounceIn;
         --rizzm-duration: 500;
         --rizzm-stagger: 250;
-        --rizzm-element-initial-opacity: 0.0001; /* 0 has issues with performance metric on Lighthouse */
+        --rizzm-element-initial-opacity: 0.0001;
       }
 
       .js-rizzm-init-failed {
@@ -21,141 +27,612 @@
       }
 
       .js-rizzm {
-        opacity: var(--rizzm-element-initial-opacity, 0);
+        opacity: var(--rizzm-element-initial-opacity, 1);
       }
+    }
+
+    /* Essential styles only */
+    .hero-pattern {
+      background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.15) 1px, transparent 0);
+      background-size: 40px 40px;
+      background-position: -19px -19px;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 150%;
+      height: 150%;
+      top: -25%;
+      left: -25%;
+      background: radial-gradient(circle at center, rgba(59, 130, 246, 0.5) 0%, transparent 70%);
+      pointer-events: none;
+      mix-blend-mode: screen;
     }
   </style>
 </head>
 
-<body style="--rizzm-stagger: 280;">
-  <div id="root">
-    <header class="bg-blue-600 text-white py-16">
-      <div class="container mx-auto text-center flex items-center flex-col justify-center min-h-[20rem] js-rizzm">
-        <h1 class="text-5xl font-bold mb-4">Rizz<span
-            class="inline-flex js-rizzm [--rizzm-keyframe:bounceIn] [--rizzm-duration:400] [--rizzm-delay:500]">m</span>
-        </h1>
-        <p class="text-xl max-w-[50rem] text-balance mx-auto mb-8 js-rizzm">Effortless and CSS level customizable
-          animations. Initialize Rizzm with `.js-rizzm` and control all the animations using CSS variables `--rizzm-*`.
-        </p>
-        <a href="#install"
-          class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-blue-100 transition-colors js-rizzm">
-          Get Started
-        </a>
+<body class="bg-gray-50">
+  <!-- Hero Section -->
+  <header class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white overflow-hidden">
+    <!-- Background Elements -->
+    <div class="hero-pattern absolute inset-0 opacity-30"></div>
+    <div class="hero-glow absolute opacity-50"></div>
+    
+    <div class="relative min-h-screen flex items-center justify-center py-20">
+      <!-- Decorative Elements -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <!-- Floating Orbs -->
+        <div class="js-rizzm absolute top-1/4 left-1/4 w-32 h-32 rounded-full"
+             style="background: radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.4), transparent); 
+                    --rizzm-keyframe: bounceIn; 
+                    --rizzm-duration: 2000;
+                    --rizzm-delay: 200;
+                    --rizzm-bounce-in-scale-start: 0.8;
+                    --rizzm-bounce-in-scale-mid: 1.1;
+                    --rizzm-bounce-in-scale-overshoot: 0.95;
+                    --rizzm-bounce-in-scale-end: 1;
+                    filter: blur(20px);"></div>
+        
+        <div class="js-rizzm absolute top-1/3 right-1/4 w-40 h-40 rounded-full"
+             style="background: radial-gradient(circle at 70% 30%, rgba(96, 165, 250, 0.3), transparent);
+                    --rizzm-keyframe: bounceIn;
+                    --rizzm-duration: 2000;
+                    --rizzm-delay: 400;
+                    --rizzm-bounce-in-scale-start: 0.7;
+                    --rizzm-bounce-in-scale-mid: 1.2;
+                    --rizzm-bounce-in-scale-overshoot: 0.9;
+                    --rizzm-bounce-in-scale-end: 1;
+                    filter: blur(25px);"></div>
       </div>
-    </header>
 
-    <main class="container px-5 mx-auto py-16 xl:max-w-[75rem]">
-      <section class="mb-16">
-        <h2 class="text-3xl font-bold mb-8 text-center js-rizzm"
-          style="--rizzm-keyframe: slideInleft; --rizzm-duration: 300;">Features</h2>
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8" style=" --rizzm-stagger: 200;">
-          <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md js-rizzm"
-            style="--rizzm-keyframe: flipFromTop; --rizzm-duration: 350; ">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-blue-500 mb-4" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-            <h3 class="text-xl font-semibold mb-2">Easy to Use</h3>
-            <p class="text-gray-600 text-center">Simple setup with minimal configuration required</p>
-          </div>
-          <div
-            class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md js-rizzm [--rizzm-keyframe:fadeInDown] md:[--rizzm-keyframe:flipFromRight]"
-            style="--rizzm-duration: 400;">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-blue-500 mb-4" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-            </svg>
-            <h3 class="text-xl font-semibold mb-2">Lightweight</h3>
-            <p class="text-gray-600 text-center">Small footprint for optimal performance</p>
-          </div>
-          <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md js-rizzm"
-            style="--rizzm-keyframe: fadeInDown; --rizzm-duration: 400;">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-blue-500 mb-4" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-            </svg>
-            <h3 class="text-xl font-semibold mb-2">Customizable</h3>
-            <p class="text-gray-600 text-center">Tailor animations to fit your project's needs</p>
-          </div>
-          <!-- Tailwind Compatible box -->
-          <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md js-rizzm"
-            style="--rizzm-keyframe: slideFromRight; --rizzm-duration: 500;">
-            <svg viewbox="0 0 51 30" width="51" height="30" class="w-12 h-12 mx-auto text-blue-500 mb-4">
-              <path fill-rule="evenodd" clip-rule="evenodd"
-                d="M25.517 0C18.712 0 14.46 3.382 12.758 10.146c2.552-3.382 5.529-4.65 8.931-3.805 1.941.482 3.329 1.882 4.864 3.432 2.502 2.524 5.398 5.445 11.722 5.445 6.804 0 11.057-3.382 12.758-10.145-2.551 3.382-5.528 4.65-8.93 3.804-1.942-.482-3.33-1.882-4.865-3.431C34.736 2.92 31.841 0 25.517 0zM12.758 15.218C5.954 15.218 1.701 18.6 0 25.364c2.552-3.382 5.529-4.65 8.93-3.805 1.942.482 3.33 1.882 4.865 3.432 2.502 2.524 5.397 5.445 11.722 5.445 6.804 0 11.057-3.381 12.758-10.145-2.552 3.382-5.529 4.65-8.931 3.805-1.941-.483-3.329-1.883-4.864-3.432-2.502-2.524-5.398-5.446-11.722-5.446z"
-                fill="#38bdf8"></path>
-            </svg>
-            <h3 class="text-xl font-semibold mb-2 text-center">Tailwind Compatible</h3>
-            <p class="text-gray-600 text-center">Fully compatible with Tailwind CSS or anyother CSS frameworks.</p>
-          </div>
-        </div>
-      </section>
+      <!-- Main Content -->
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center relative z-10">
+            <!-- Intro Text -->
+            <div class="mb-4">
+              <span class="js-rizzm inline-block text-blue-300 text-lg font-medium tracking-wider"
+                    style="--rizzm-keyframe: fadeInDown; --rizzm-duration: 800;">
+                INTRODUCING
+              </span>
+            </div>
 
-      <section id="install" class="mb-16 js-rizzm" style="--rizzm-keyframe: flipFromRight; --rizzm-duration: 800;">
-        <h2 class="text-3xl font-bold mb-8 text-center js-rizzm"
-          style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 500;">Installation</h2>
-        <div class="bg-white p-8 rounded-lg shadow-md js-rizzm"
-          style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 500;">
-          <h3 class="text-xl font-semibold mb-4">Install with npm:</h3>
-          <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>npm install rizzm</code></pre>
-          <h3 class="text-xl font-semibold mt-8 mb-4">Or include via CDN:</h3>
-          <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto">
-            COMIN
-          </pre>
-        </div>
-      </section>
+            <!-- Title -->
+            <h1 class="text-7xl font-bold flex justify-center mb-8 tracking-tight">
+              <div class="js-rizzm flex" style="--rizzm-stagger: 100">
+                <span class="block bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent" 
+                      style="--rizzm-keyframe: flipFromLeft; --rizzm-duration: 600;">R</span>
+                <span class="block bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent" 
+                      style="--rizzm-keyframe: flipFromLeft; --rizzm-duration: 600;">i</span>
+                <span class="block bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent" 
+                      style="--rizzm-keyframe: flipFromLeft; --rizzm-duration: 600;">z</span>
+                <span class="block bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent" 
+                      style="--rizzm-keyframe: flipFromLeft; --rizzm-duration: 600;">z</span>
+                <span class="block relative bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent" 
+                      style="--rizzm-keyframe: bounceIn; --rizzm-duration: 800;">m
+                  <span class="absolute -top-2 -right-2 w-2.5 h-2.5 bg-blue-400 rounded-full shadow-lg shadow-blue-500/50" 
+                        style="--rizzm-keyframe: fadeIn; --rizzm-duration: 400; --rizzm-delay: 800;"></span>
+                </span>
+              </div>
+            </h1>
 
-      <section class="mb-16 js-rizzm"
-        style="--rizzm-keyframe: flipFromTop; --rizzm-duration: 600; --rizzm-root: '.koko';">
-        <h2 class="text-3xl font-bold mb-8 text-center">Usage Guide</h2>
-        <div class="bg-white p-8 rounded-lg shadow-md js-rizzm"
-          style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 800;">
-          <h3 class="text-xl font-semibold mb-4">1. Initialize Rizzm</h3>
-          <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>const rizzm = new Rizzm({
-selector: ".js-rizzm",
-options: {
-rootMargin: "50px",
-threshold: 0.24,
-stagger: 150
-}
-});</code></pre>
-          <h3 class="text-xl font-semibold mt-8 mb-4">2. Add CSS classes to your elements</h3>
-          <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>&lt;div class="js-rizzm" style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 800;"&gt;
-Your content here
+            <!-- Description -->
+            <div class="js-rizzm mb-12 relative" style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 800;">
+              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/10 to-transparent blur-xl"></div>
+              <p class="text-2xl max-w-2xl mx-auto text-blue-50 leading-relaxed font-light text-balance">
+                Add stunning animations to your website with just a few lines of code.
+              </p>
+              <p>
+                <span class="block mt-4 text-lg text-blue-200 font-normal">
+                  <span class="inline-flex items-center gap-2 mt-2" 
+                        style="--rizzm-keyframe: fadeIn; --rizzm-duration: 600;">
+                        Fully customizable. Lightweight. Easy to use.
+                    <svg class="w-4 h-4 text-blue-400" viewBox="0 0 54 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M27 0c-7.2 0-11.7 3.6-13.5 10.8 2.7-3.6 5.85-4.95 9.45-4.05 2.054.513 3.522 2.004 5.147 3.653C30.744 13.09 33.808 16.2 40.5 16.2c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C36.756 3.11 33.692 0 27 0zM13.5 16.2C6.3 16.2 1.8 19.8 0 27c2.7-3.6 5.85-4.95 9.45-4.05 2.054.514 3.522 2.004 5.147 3.653C17.244 29.29 20.308 32.4 27 32.4c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C23.256 19.31 20.192 16.2 13.5 16.2z" fill="currentColor"/>
+                    </svg>
+                    <span class="text-base">Tailwind CSS Compatible</span>
+                  </span>
+                </span>
+              </p>
+            </div>
+
+            <!-- CTA Button -->
+            <div class="mb-16 flex justify-center gap-4">
+              <a href="#installation" 
+                 class="js-rizzm inline-flex items-center px-10 py-5 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full text-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] group shadow-lg shadow-blue-500/25"
+                 style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 800; --rizzm-delay: 800;">
+                <span class="flex items-center">
+                  <span>Get Started</span>
+                  <svg class="w-6 h-6 ml-3 transform transition-transform duration-300 group-hover:translate-x-1" 
+                       fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                  </svg>
+                </span>
+              </a>
+
+              <a href="https://github.com/razaanstha/rizzm" target="_blank" rel="noopener"
+                 class="js-rizzm inline-flex items-center px-8 py-5 bg-white/10 backdrop-blur-sm text-white rounded-full text-lg font-semibold hover:bg-white/20 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] group border border-white/20"
+                 style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 800; --rizzm-delay: 900;">
+                <span class="flex items-center">
+                  <svg class="w-6 h-6 mr-3" viewBox="0 0 24 24" fill="currentColor">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.463 2 11.97c0 4.404 2.865 8.14 6.839 9.458.5.092.682-.216.682-.48 0-.236-.008-.864-.013-1.695-2.782.602-3.369-1.337-3.369-1.337-.454-1.151-1.11-1.458-1.11-1.458-.908-.618.069-.606.069-.606 1.003.07 1.531 1.027 1.531 1.027.892 1.524 2.341 1.084 2.91.828.092-.643.35-1.083.636-1.332-2.22-.251-4.555-1.107-4.555-4.927 0-1.088.39-1.979 1.029-2.675-.103-.252-.446-1.266.098-2.638 0 0 .84-.268 2.75 1.022A9.607 9.607 0 0112 6.82c.85.004 1.705.114 2.504.336 1.909-1.29 2.747-1.022 2.747-1.022.546 1.372.202 2.386.1 2.638.64.696 1.028 1.587 1.028 2.675 0 3.83-2.339 4.673-4.566 4.92.359.307.678.915.678 1.846 0 1.332-.012 2.407-.012 2.734 0 .267.18.577.688.48 3.97-1.32 6.833-5.054 6.833-9.458C22 6.463 17.522 2 12 2z"/>
+                  </svg>
+                  <span>GitHub</span>
+                </span>
+              </a>
+            </div>
+
+            <!-- Code Preview -->
+            <div class="js-rizzm relative group" 
+                 style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 800; --rizzm-delay: 1000;">
+              <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+              <div class="relative">
+                <div class="mx-auto max-w-4xl bg-gray-900/95 backdrop-blur-sm rounded-xl shadow-2xl overflow-hidden border border-blue-500/20">
+                  <div class="flex items-center justify-between px-4 py-3 bg-gray-800/50 border-b border-gray-700">
+                    <div class="flex space-x-2">
+                      <div class="w-3 h-3 bg-red-500/90 rounded-full"></div>
+                      <div class="w-3 h-3 bg-yellow-500/90 rounded-full"></div>
+                      <div class="w-3 h-3 bg-green-500/90 rounded-full"></div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                      <div class="flex items-center gap-3 bg-gray-800/50 rounded-lg p-1">
+                        <button class="js-rizzm px-3 py-1 text-xs font-medium rounded bg-blue-500 text-white transition-colors" 
+                                onclick="this.nextElementSibling.classList.remove('bg-blue-500', 'text-white'); this.classList.add('bg-blue-500', 'text-white'); document.getElementById('tailwindCode').classList.add('hidden'); document.getElementById('cssCode').classList.remove('hidden')"
+                                style="--rizzm-keyframe: fadeIn; --rizzm-duration: 400;">CSS</button>
+                        <button class="js-rizzm px-3 py-1 text-xs font-medium rounded text-blue-300 hover:text-blue-200 transition-colors" 
+                                onclick="this.previousElementSibling.classList.remove('bg-blue-500', 'text-white'); this.classList.add('bg-blue-500', 'text-white'); document.getElementById('cssCode').classList.add('hidden'); document.getElementById('tailwindCode').classList.remove('hidden')"
+                                style="--rizzm-keyframe: fadeIn; --rizzm-duration: 400;">Tailwind</button>
+                      </div>
+                      <div class="text-xs text-blue-300/50 font-mono">index.html</div>
+                    </div>
+                  </div>
+                  <div id="cssCode" class="block">
+                    <pre class="p-8 text-left overflow-x-auto"><code class="text-blue-300 font-mono text-sm">import <span class="text-green-400">Rizzm</span> from 'rizzm';
+
+const rizzm = new Rizzm();
+
+// <span class="text-gray-500">Use CSS variables with Rizzm</span>
+&lt;div class="<span class="text-yellow-400">js-rizzm</span>" style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 800; --rizzm-delay: 200;"&gt;
+  <span class="text-blue-200">✨ Watch the magic happen</span>
 &lt;/div&gt;</code></pre>
-          <p class="mt-4 text-gray-600">
-            Customize animations using CSS variables: --rizzm-keyframe, --rizzm-duration, --rizzm-stagger, --rizzm-from,
-            --rizzm-to
-          </p>
-        </div>
-      </section>
+                  </div>
+                  <div id="tailwindCode" class="hidden">
+                    <pre class="p-8 text-left overflow-x-auto"><code class="text-blue-300 font-mono text-sm">import <span class="text-green-400">Rizzm</span> from 'rizzm';
 
-      <section class="js-rizzm" style="--rizzm-keyframe: zoomInRotate; --rizzm-duration: 600;">
-        <h2 class="text-3xl font-bold mb-8 text-center">Its now time for you to Rizz<span
-            class="text-[length:0.7em]">m</span> up your site.</h2>
-        <div class="text-center js-rizzm [--rizzm-keyframe:fadeIn]">
-          <a href="#install"
-            class="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition-colors">
-            Get Started
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd"
-                d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z"
-                clip-rule="evenodd" />
+const rizzm = new Rizzm();
+
+// <span class="text-gray-500">Use Tailwind's arbitrary values with Rizzm</span>
+&lt;div class="<span class="text-yellow-400">js-rizzm</span> <span class="text-blue-400">[--rizzm-keyframe:fadeInUp] [--rizzm-duration:800] [--rizzm-delay:200]</span>"&gt;
+  <span class="text-blue-200">✨ Watch the magic happen</span>
+&lt;/div&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Wave -->
+    <div class="absolute -bottom-4 left-0 right-0 max-md:hidden">
+      <svg class="w-full h-24 fill-gray-50" viewBox="0 0 1440 74" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,37 C240,74 480,74 720,37 C960,0 1200,0 1440,37 L1440,74 L0,74 Z"></path>
+      </svg>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container mx-auto py-16 px-4">
+    <!-- Features Section -->
+    <section class="relative mb-32">
+      <div class="absolute inset-0 bg-gradient-to-br from-gray-50 to-white/50 rounded-3xl -z-10"></div>
+      <div class="absolute inset-0 hero-pattern opacity-5 rounded-3xl -z-10"></div>
+
+      <h2 class="text-4xl font-bold text-center mb-16 js-rizzm bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800" 
+          style="--rizzm-keyframe: flipFromTop; --rizzm-duration: 800;">
+        Features
+      </h2>
+
+      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+        <!-- Built-in Animations -->
+        <div class="js-rizzm" style="--rizzm-keyframe: slideFromLeft; --rizzm-duration: 800;">
+          <div class="p-8 rounded-2xl bg-white shadow-lg border border-blue-100 h-full">
+            <div class="text-blue-500 mb-6" style="--rizzm-keyframe: flipFromBottom; --rizzm-duration: 800; --rizzm-delay: 400;">
+              <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-4 text-gray-900">Built-in Animations</h3>
+            <div class="space-y-3" style="--rizzm-stagger: 100">
+              <!-- Fade Animations -->
+              <div class="p-3 bg-gray-50 rounded-lg text-sm font-mono" style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 600;">
+                <span class="text-blue-600">Fade:</span>
+                <div class="mt-1 text-gray-600">
+                  <div class="flex flex-wrap gap-2">
+                    <code>fadeIn</code>
+                    <code>fadeInUp</code>
+                    <code>fadeInDown</code>
+                    <code>fadeInLeft</code>
+                    <code>fadeInRight</code>
+                  </div>
+                  <div class="text-xs mt-1 text-gray-500">Smooth opacity transitions with optional directional movement</div>
+                </div>
+              </div>
+
+              <!-- Slide Animations -->
+              <div class="p-3 bg-gray-50 rounded-lg text-sm font-mono" style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 600;">
+                <span class="text-blue-600">Slide:</span>
+                <div class="mt-1 text-gray-600">
+                  <div class="flex flex-wrap gap-2">
+                    <code>slideFromLeft</code>
+                    <code>slideFromRight</code>
+                    <code>slideFromTop</code>
+                    <code>slideFromBottom</code>
+                  </div>
+                  <div class="text-xs mt-1 text-gray-500">Slide elements in from any direction with fade effect</div>
+                </div>
+              </div>
+
+              <!-- Flip Animations -->
+              <div class="p-3 bg-gray-50 rounded-lg text-sm font-mono" style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 600;">
+                <span class="text-blue-600">Flip:</span>
+                <div class="mt-1 text-gray-600">
+                  <div class="flex flex-wrap gap-2">
+                    <code>flipFromLeft</code>
+                    <code>flipFromRight</code>
+                    <code>flipFromTop</code>
+                    <code>flipFromBottom</code>
+                  </div>
+                  <div class="text-xs mt-1 text-gray-500">3D flip animations with perspective and fade</div>
+                </div>
+              </div>
+
+              <!-- Special Animations -->
+              <div class="p-3 bg-gray-50 rounded-lg text-sm font-mono" style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 600;">
+                <span class="text-blue-600">Special:</span>
+                <div class="mt-1 text-gray-600">
+                  <div class="flex flex-wrap gap-2">
+                    <code>zoomIn</code>
+                    <code>zoomInRotate</code>
+                    <code>bounceIn</code>
+                    <code>rotateIn</code>
+                  </div>
+                  <div class="text-xs mt-1 text-gray-500">Complex animations combining scale, rotation, and bounce effects</div>
+                  <div class="flex gap-2 mt-2">
+                    <div class="js-rizzm w-4 h-4 bg-blue-500 rounded" style="--rizzm-keyframe: zoomIn; --rizzm-duration: 600;"></div>
+                    <div class="js-rizzm w-4 h-4 bg-blue-500 rounded" style="--rizzm-keyframe: zoomInRotate; --rizzm-duration: 600;"></div>
+                    <div class="js-rizzm w-4 h-4 bg-blue-500 rounded" style="--rizzm-keyframe: bounceIn; --rizzm-duration: 600;"></div>
+                    <div class="js-rizzm w-4 h-4 bg-blue-500 rounded" style="--rizzm-keyframe: rotateIn; --rizzm-duration: 600;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Advanced Features -->
+        <div class="js-rizzm" style="--rizzm-keyframe: slideFromRight; --rizzm-duration: 800;">
+          <div class="p-8 rounded-2xl bg-white shadow-lg border border-blue-100 h-full">
+            <div class="js-rizzm text-blue-500 mb-6 origin-center" style="--rizzm-keyframe: flipFromBottom; --rizzm-duration: 800; --rizzm-delay: 600;">
+              <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-4 text-gray-900">Advanced Features</h3>
+            <div class="js-rizzm space-y-3" style="--rizzm-stagger: 100">
+              <!-- Random Animation -->
+              <div class="p-3 bg-gray-50 rounded-lg text-sm font-mono" style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 600;">
+                <span class="text-blue-600">Random:</span>
+                <div class="mt-1 text-gray-600">
+                  <code>--rizzm-keyframe: random</code>
+                  <div class="text-xs mt-1 text-gray-500">Randomly selects from available animations</div>
+                </div>
+              </div>
+
+              <!-- Infinite Animation -->
+              <div class="p-3 bg-gray-50 rounded-lg text-sm font-mono" style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 600;">
+                <span class="text-blue-600">Iterations:</span>
+                <div class="mt-1 text-gray-600">
+                  <code>--rizzm-iteration: 2</code>
+                  <div class="text-xs mt-1 text-gray-500">Shows the animation 2 times</div>
+                </div>
+              </div>
+
+              <!-- Intersection Observer -->
+              <div class="p-3 bg-gray-50 rounded-lg text-sm font-mono" style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 600;">
+                <span class="text-blue-600">Observer Options:</span>
+                <div class="mt-1 text-gray-600">
+                  <code>rootMargin: "50px"</code>
+                  <code class="block mt-1">threshold: 0.2</code>
+                  <div class="text-xs mt-1 text-gray-500">Fine-tune when animations trigger</div>
+                </div>
+              </div>
+
+              <!-- Custom Easing -->
+              <div class="p-3 bg-gray-50 rounded-lg text-sm font-mono" style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 600;">
+                <span class="text-blue-600">Easing:</span>
+                <div class="mt-1 text-gray-600">
+                  <code>--rizzm-easing: cubic-bezier(0.25, 0.1, 0.25, 1)</code>
+                  <div class="text-xs mt-1 text-gray-500">Customize animation timing function</div>
+                </div>
+              </div>
+
+              <!-- Animation Control -->
+              <div class="p-3 bg-gray-50 rounded-lg text-sm font-mono" style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 600;">
+                <span class="text-blue-600">Control:</span>
+                <div class="mt-1 text-gray-600">
+                  <code>rizzm.refresh()</code>
+                  <code class="block mt-1">rizzm.disconnect()</code>
+                  <div class="text-xs mt-1 text-gray-500">Programmatically control animations</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Installation Section -->
+    <section id="installation" class="relative mb-32">
+      <div class="absolute inset-0 bg-gradient-to-br from-gray-50 to-white/50 rounded-3xl -z-10"></div>
+      <div class="absolute inset-0 hero-pattern opacity-5 rounded-3xl -z-10"></div>
+
+      <h2 class="text-4xl font-bold text-center mb-16 js-rizzm bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800" 
+          style="--rizzm-keyframe: flipFromTop; --rizzm-duration: 800;">
+        Get Started
+      </h2>
+
+      <div class="max-w-3xl mx-auto space-y-8">
+        <!-- Step 1: Installation -->
+        <div class="js-rizzm" style="--rizzm-keyframe: slideFromLeft; --rizzm-duration: 800; --rizzm-delay: 200;">
+          <div class="p-8 rounded-2xl bg-white shadow-lg border border-blue-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-center gap-4 mb-6">
+              <span class="js-rizzm flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white text-sm font-semibold" 
+                    style="--rizzm-keyframe: bounceIn; --rizzm-duration: 500; --rizzm-delay: 400;">1</span>
+              <h3 class="js-rizzm text-xl font-semibold" 
+                  style="--rizzm-keyframe: fadeInRight; --rizzm-duration: 500; --rizzm-delay: 600;">
+                Install Rizzm
+              </h3>
+            </div>
+            <div class="js-rizzm" style="--rizzm-keyframe: fadeIn; --rizzm-duration: 600; --rizzm-delay: 800;">
+              <pre class="bg-gray-900 text-blue-300 p-6 rounded-xl overflow-x-auto"><code class="font-mono">npm install rizzm</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Initialize -->
+        <div class="js-rizzm" style="--rizzm-keyframe: slideFromRight; --rizzm-duration: 800; --rizzm-delay: 400;">
+          <div class="p-8 rounded-2xl bg-white shadow-lg border border-blue-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-center gap-4 mb-6">
+              <span class="js-rizzm flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white text-sm font-semibold" 
+                    style="--rizzm-keyframe: bounceIn; --rizzm-duration: 500; --rizzm-delay: 600;">2</span>
+              <h3 class="js-rizzm text-xl font-semibold" 
+                  style="--rizzm-keyframe: fadeInRight; --rizzm-duration: 500; --rizzm-delay: 800;">
+                Initialize Rizzm
+              </h3>
+            </div>
+            <div class="js-rizzm" style="--rizzm-keyframe: fadeIn; --rizzm-duration: 600; --rizzm-delay: 1000;">
+              <pre class="bg-gray-900 text-blue-300 p-6 rounded-xl overflow-x-auto"><code class="font-mono">import Rizzm from 'rizzm';
+
+const rizzm = new Rizzm({
+  selector: ".js-rizzm",
+  options: {
+    rootMargin: "50px",
+    threshold: 0.2,
+    stagger: 150
+  }
+});</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Usage -->
+        <div class="js-rizzm" style="--rizzm-keyframe: slideFromLeft; --rizzm-duration: 800; --rizzm-delay: 600;">
+          <div class="p-8 rounded-2xl bg-white shadow-lg border border-blue-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-center gap-4 mb-6">
+              <span class="js-rizzm flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white text-sm font-semibold" 
+                    style="--rizzm-keyframe: bounceIn; --rizzm-duration: 500; --rizzm-delay: 800;">3</span>
+              <h3 class="js-rizzm text-xl font-semibold" 
+                  style="--rizzm-keyframe: fadeInRight; --rizzm-duration: 500; --rizzm-delay: 1000;">
+                Add to Your HTML
+              </h3>
+            </div>
+            <div class="js-rizzm" style="--rizzm-keyframe: fadeIn; --rizzm-duration: 600; --rizzm-delay: 1200;">
+              <pre class="bg-gray-900 text-blue-300 p-6 rounded-xl overflow-x-auto"><code class="font-mono">&lt;div class="js-rizzm" 
+     style="--rizzm-keyframe: fadeInUp; 
+            --rizzm-duration: 800;"&gt;
+  Your content here
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Best Practices Section -->
+    <section class="relative mb-32">
+      <div class="absolute inset-0 bg-gradient-to-br from-gray-50 to-white/50 rounded-3xl -z-10"></div>
+      <div class="absolute inset-0 hero-pattern opacity-5 rounded-3xl -z-10"></div>
+
+      <h2 class="text-4xl font-bold text-center mb-16 js-rizzm bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800" 
+          style="--rizzm-keyframe: flipFromTop; --rizzm-duration: 800;">
+        Best Practices
+      </h2>
+
+      <div class="max-w-3xl mx-auto space-y-8">
+        <!-- Stagger vs Delay -->
+        <div class="js-rizzm" style="--rizzm-keyframe: slideFromLeft; --rizzm-duration: 800;">
+          <div class="p-8 rounded-2xl bg-white shadow-lg border border-blue-100">
+            <h3 class="text-xl font-semibold mb-4 text-gray-900">Stagger vs Delay</h3>
+            <div class="space-y-4">
+              <div class="bg-gray-50 rounded-lg p-4">
+                <h4 class="text-blue-600 font-medium mb-2">❌ Using Individual Delays</h4>
+                <pre class="bg-gray-900 text-blue-300 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;div&gt;
+  &lt;div class="js-rizzm" 
+       style="--rizzm-keyframe: fadeInUp;
+              --rizzm-duration: 600;
+              --rizzm-delay: 0;"&gt;First&lt;/div&gt;
+  &lt;div class="js-rizzm" 
+       style="--rizzm-keyframe: fadeInUp;
+              --rizzm-duration: 600;
+              --rizzm-delay: 200;"&gt;Second&lt;/div&gt;
+  &lt;div class="js-rizzm" 
+       style="--rizzm-keyframe: fadeInUp;
+              --rizzm-duration: 600;
+              --rizzm-delay: 400;"&gt;Third&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                <p class="text-sm text-gray-600 mt-2">
+                  Harder to maintain and requires manual calculation of delays.
+                </p>
+              </div>
+
+              <div class="bg-gray-50 rounded-lg p-4">
+                <h4 class="text-green-600 font-medium mb-2">✅ Using Stagger</h4>
+                <pre class="bg-gray-900 text-blue-300 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;div class="js-rizzm" style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 600; --rizzm-stagger: 200"&gt;
+  &lt;div class="js-rizzm"&gt;First&lt;/div&gt;
+  &lt;div class="js-rizzm"&gt;Second&lt;/div&gt;
+  &lt;div class="js-rizzm"&gt;Third&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                <div class="text-sm text-gray-600 mt-2 space-y-2">
+                  <p>✓ Cleaner code - no manual delay calculations</p>
+                  <p>✓ Automatically handles timing between elements</p>
+                  <p>✓ Easier to add or remove items without updating delays</p>
+                </div>
+                <div class="mt-4">
+                  <div class="js-rizzm" style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 600; --rizzm-stagger: 200">
+                    <div class="js-rizzm flex gap-2 items-center bg-blue-50 text-blue-600 px-3 py-2 rounded-lg mb-2">First</div>
+                    <div class="js-rizzm flex gap-2 items-center bg-blue-50 text-blue-600 px-3 py-2 rounded-lg mb-2">Second</div>
+                    <div class="js-rizzm flex gap-2 items-center bg-blue-50 text-blue-600 px-3 py-2 rounded-lg">Third</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Performance Tips -->
+        <div class="js-rizzm" style="--rizzm-keyframe: slideFromLeft; --rizzm-duration: 800;">
+          <div class="p-8 rounded-2xl bg-white shadow-lg border border-blue-100">
+            <h3 class="text-xl font-semibold mb-4 text-gray-900">Performance Tips</h3>
+            <div class="space-y-4">
+              <div class="js-rizzm" style="--rizzm-stagger: 100">
+                <div class="flex items-start gap-3 bg-gray-50 rounded-lg p-4">
+                  <span class="text-green-500 mt-1">✓</span>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Use transform and opacity</h4>
+                    <p class="text-sm text-gray-600">These properties are GPU-accelerated and provide smooth animations.</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3 bg-gray-50 rounded-lg p-4">
+                  <span class="text-green-500 mt-1">✓</span>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Avoid animating layout properties</h4>
+                    <p class="text-sm text-gray-600">Properties like width, height, padding cause layout recalculation.</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3 bg-gray-50 rounded-lg p-4">
+                  <span class="text-green-500 mt-1">✓</span>
+                  <div class="min-w-0 w-full">
+                    <h4 class="font-medium text-gray-900">Respect user preferences</h4>
+                    <p class="text-sm text-gray-600">Use <code class="text-blue-600">prefers-reduced-motion</code> media query to disable animations when requested.</p>
+                    <div class="mt-3 overflow-x-auto">
+                      <pre class="bg-gray-900 text-blue-300 p-4 rounded-lg text-sm whitespace-pre"><code>@media not (prefers-reduced-motion: reduce) {
+  :root {
+    --rizzm-keyframe: bounceIn;
+    --rizzm-duration: 500;
+    --rizzm-stagger: 250;
+    --rizzm-element-initial-opacity: 0.0001;
+  }
+
+  .js-rizzm-init-failed {
+    --rizzm-element-initial-opacity: 1;
+  }
+
+  .js-rizzm {
+    opacity: var(--rizzm-element-initial-opacity, 1);
+  }
+}</code></pre>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-2">This ensures animations only run when users haven't requested reduced motion in their system settings.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="relative text-center py-16">
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-white rounded-3xl -z-10"></div>
+      <div class="absolute inset-0 hero-pattern opacity-10 rounded-3xl -z-10"></div>
+
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-5xl font-bold mb-8">
+          <div class="js-rizzm flex flex-wrap justify-center gap-x-3" style="--rizzm-stagger: 150">
+            <span class="inline-block bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800" 
+                  style="--rizzm-keyframe: slideFromLeft; --rizzm-duration: 600;">
+              Ready to
+            </span>
+            <span class="inline-block bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800" 
+                  style="--rizzm-keyframe: slideFromRight; --rizzm-duration: 600;">
+              Rizz
+            </span>
+            <span class="inline-block bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800" 
+                  style="--rizzm-keyframe: bounceIn; --rizzm-duration: 800;">
+              m
+            </span>
+            <span class="inline-block bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800" 
+                  style="--rizzm-keyframe: slideFromRight; --rizzm-duration: 600;">
+              Up Your Site?
+            </span>
+          </div>
+        </h2>
+        
+        <div class="js-rizzm" style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 600;">
+          <a href="https://github.com/razaanstha/rizzm" target="_blank" rel="noopener" 
+             class="inline-flex items-center px-8 py-4 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition-colors group">
+            <span>Get Started on GitHub</span>
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                 class="h-5 w-5 ml-2 transform transition-transform group-hover:translate-x-1" 
+                 viewBox="0 0 20 20" 
+                 fill="currentColor">
+              <path fill-rule="evenodd" 
+                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" 
+                    clip-rule="evenodd" />
             </svg>
           </a>
         </div>
-      </section>
-    </main>
-
-    <footer class="bg-gray-800 text-white py-8">
-      <div class="container mx-auto text-center js-rizz-later [--rizzm-keyframe:flipInX] [--rizzm-duration:5000]">
-        <p>I WILL BE ANIMATED LATER</p>
       </div>
-    </footer>
-  </div>
-  <script type="module" src="./dist/main.js"></script>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="relative bg-gray-900 text-white py-12 mt-20">
+    <div class="absolute inset-0 hero-pattern opacity-10"></div>
+    <div class="container mx-auto px-4 text-center">
+      <div class="js-rizzm" style="--rizzm-stagger: 100">
+        <div class="flex justify-center gap-4">
+          <a href="#installation" class="text-sm text-gray-400 hover:text-white transition-colors"
+             style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 600;">
+            Installation
+          </a>
+          <a href="https://github.com/razaanstha/rizzm" target="_blank" rel="noopener" 
+             class="text-sm text-gray-400 hover:text-white transition-colors"
+             style="--rizzm-keyframe: fadeInUp; --rizzm-duration: 600;">
+            GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="./main.js"></script>
 </body>
 
 </html>
